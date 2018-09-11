@@ -1,14 +1,15 @@
 package de.geheb.imdbfinder.app;
 
-import de.geheb.imdbfinder.imdb.ContentResultSerializer;
 import de.geheb.imdbfinder.imdb.ContentType;
 import de.geheb.imdbfinder.imdb.FinderException;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
 
 import org.jetbrains.annotations.NotNull;
 
+import de.geheb.imdbfinder.imdb.SerializerFactory;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -61,14 +62,15 @@ public class AppCommand implements Runnable {
 
     try {
       final var result = app.find(movieTitle);
-      final var serializer = new ContentResultSerializer(contentType);
+      final var serializer = new SerializerFactory().create(contentType);
 
       if (null != outputFile) {
         try (var outputStream = new FileOutputStream(outputFile)) {
-          serializer.serialize(result, outputStream);
+          final String output = serializer.serialize(result);
+          outputStream.write(output.getBytes(StandardCharsets.UTF_8));
         }
       } else {
-        serializer.serialize(result, System.out);
+        System.out.println(serializer.serialize(result));
       }
       System.exit(0);
 

@@ -1,15 +1,18 @@
 package de.geheb.imdbfinder.app;
 
-import de.geheb.imdbfinder.Main;
 import picocli.CommandLine.IVersionProvider;
 
 
 class ManifestVersionProvider implements IVersionProvider {
 
+  private final String currentVersion;
+
+  public ManifestVersionProvider() {
+     currentVersion = ManifestVersionProvider.class.getPackage().getImplementationVersion();
+  }
+
   @Override
   public String[] getVersion() {
-
-    final String version = Main.class.getPackage().getImplementationVersion();
-    return new String[]{null != version ? version : "unknown"};
+    return new String[]{null != currentVersion ? currentVersion : "unknown"};
   }
 }
