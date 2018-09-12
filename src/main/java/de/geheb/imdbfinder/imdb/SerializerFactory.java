@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 public class SerializerFactory {
 
   public Serializer create(@NotNull ContentType contentType) {
+    //noinspection ConstantConditions
     if (null == contentType) throw new IllegalArgumentException("null");
     switch (contentType) {
       case KeyValue:

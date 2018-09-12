@@ -23,6 +23,7 @@ class SerializerFactoryTest {
 
   @Test
   void cannotCreateNullSerializer() {
+    //noinspection ConstantConditions
     assertThrows(IllegalArgumentException.class, () -> serializerFactory.create(null));
   }
 }
