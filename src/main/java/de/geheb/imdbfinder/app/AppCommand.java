@@ -18,7 +18,7 @@ import picocli.CommandLine.Option;
 @Command(
         name = "imdbfinder",
         footer = "Copyright (c) 2018",
-        description = "%nfind and print movie information from IMDb%n",
+        description = "%nfind any movie on IMDb and extract meta information%n",
         versionProvider = ManifestVersionProvider.class
 )
 public class AppCommand implements Runnable {
