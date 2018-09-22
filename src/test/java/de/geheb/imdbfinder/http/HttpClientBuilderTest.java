@@ -34,10 +34,14 @@ class HttpClientBuilderTest {
     stubFor(get(urlPathMatching("/foo"))
             .willReturn(aResponse()
                     .withStatus(200)
-                    .withBody("bar")));
+                    .withBody("")));
 
     final var connection = httpClientBuilder.requestGet(new URL("http://localhost:" + port + "/foo"));
 
-    assertEquals(200, connection.getResponseCode());
+    try {
+      assertEquals(200, connection.getResponseCode());
+    } finally {
+      connection.disconnect();
+    }
   }
 }

@@ -86,7 +86,7 @@ public class ContentParser {
     result.setUserRating(null != ratingValue ? Double.parseDouble(ratingValue) : null);
 
     final var keywords = jsonObj.get("keywords");
-    result.setKeywords(null != keywords ? Arrays.asList(keywords.asString().split(",")) : null);
+    result.setKeywords(null != keywords ? Arrays.asList(keywords.asString().split("\\s*,\\s*")) : null);
 
     result.setImageUrl(new URL(jsonObj.get("image").asString()));
 

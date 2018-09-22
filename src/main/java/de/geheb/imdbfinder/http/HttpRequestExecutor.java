@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.CharBuffer;
 import javax.inject.Inject;
 
 import org.jetbrains.annotations.NotNull;
@@ -33,13 +34,13 @@ public class HttpRequestExecutor {
       var stringBuilder = new StringBuilder();
 
       try (var reader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream()),
-              4096)) {
-        String line;
-        while ((line = reader.readLine()) != null) {
-          stringBuilder.append(line).append("\n");
+              65535)) {
+        var charBuffer = CharBuffer.allocate(4096);
+        while (reader.read(charBuffer) > 0) {
+          stringBuilder.append(charBuffer.flip());
+          charBuffer.clear();
         }
       }
-
       return stringBuilder.toString();
 
     } finally {
