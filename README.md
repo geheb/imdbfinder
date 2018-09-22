@@ -6,7 +6,7 @@ find any movie on IMDb and extract meta information
 * [Java 10 Runtime](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 
 ## Usage
-
+```
 imdbfinder [-hv] [-c=<contentType>] [-o=<outputFile>] -t=<movieTitle>
 
   -c, --contentType=<contentType>
@@ -15,13 +15,16 @@ imdbfinder [-hv] [-c=<contentType>] [-o=<outputFile>] -t=<movieTitle>
   -o, --output=<outputFile>  Sets the output file. Default: stdout
   -t, --title=<movieTitle>   title of the movie to find
   -v, --version              display version info
+```
 
 ### Example
 
 Find "X-Men"
+	
 	java -jar imdbfinder-1.0-jar-with-dependencies.jar -t x-men
 
-The output will be key/value like:
+The output will be key/value like
+
 	movieUrl=https://...
 	title=X-Men
 	datePublished=2000-07-13
