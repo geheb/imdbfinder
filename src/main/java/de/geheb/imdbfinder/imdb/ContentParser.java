@@ -88,7 +88,8 @@ public class ContentParser {
     final var keywords = jsonObj.get("keywords");
     result.setKeywords(null != keywords ? Arrays.asList(keywords.asString().split("\\s*,\\s*")) : null);
 
-    result.setImageUrl(new URL(jsonObj.get("image").asString()));
+    final var image = jsonObj.get("image");
+    result.setImageUrl(null != image ? new URL(image.asString()) : null);
 
     final var duration = jsonObj.get("duration");
     result.setDuration(null != duration ? duration.asString() : null);
