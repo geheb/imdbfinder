@@ -32,5 +32,5 @@ if (!(Test-Path -Path $buildFile )) {
 	Add-Content -Value "  `$Env:Path += "";"" + `$Env:JAVA_HOME + ""\bin"";" -Path $buildFile;
 	Add-Content -Value "}" -Path $buildFile;
 	
-	Add-Content -Value "mvn -V clean package" -Path $buildFile;
+	Add-Content -Value "mvn -V clean package 2> $null" -Path $buildFile;
 }
