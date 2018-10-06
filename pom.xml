@@ -16,25 +16,19 @@
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
         <maven.compiler.source>10</maven.compiler.source>
         <maven.compiler.target>10</maven.compiler.target>
-
         <maven.assembly.plugin.version>3.1.0</maven.assembly.plugin.version>
 
         <picocli.version>3.5.2</picocli.version>
-
         <dagger.version>2.17</dagger.version>
-
         <annotations.version>16.0.2</annotations.version>
-
         <minimal.json.version>0.9.5</minimal.json.version>
 
         <junit.jupiter.version>5.2.0</junit.jupiter.version>
         <junit.platform.surefire.provider.version>1.1.1</junit.platform.surefire.provider.version>
-
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
-
         <wiremock.version>2.18.0</wiremock.version>
-
         <mockito.core.version>2.21.0</mockito.core.version>
+        <slf4j.simple.version>1.7.25</slf4j.simple.version>
 
     </properties>
 
@@ -91,6 +85,13 @@
             <version>${mockito.core.version}</version>
             <scope>test</scope>
         </dependency>
+
+       <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>slf4j-simple</artifactId>
+           <version>${slf4j.simple.version}</version>
+           <scope>test</scope>
+       </dependency>
 
     </dependencies>
 

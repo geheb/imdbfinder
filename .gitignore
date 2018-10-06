@@ -25,3 +25,7 @@ hs_err_pid*
 # temp folder
 target/
 .idea/
+tools/
+
+# temp files
+build.ps1
