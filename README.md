@@ -1,9 +1,12 @@
-# imdbfinder
+# imdbfinder [![Build status](https://ci.appveyor.com/api/projects/status/cux8wvg4r2okag5p?svg=true)](https://ci.appveyor.com/project/gethomast/imdbfinder)
 find any movie on IMDb and extract meta information 
 
 ## Prerequisites
 * Java 10 compatible OS
 * [Java 10 Runtime](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
+## Download
+Latest [Package](https://github.com/geheb/imdbfinder/releases/latest)
 
 ## Usage
 ```
