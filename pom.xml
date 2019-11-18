@@ -7,28 +7,28 @@
 
     <groupId>de.geheb.code</groupId>
     <artifactId>imdbfinder</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <maven.compiler.source>10</maven.compiler.source>
         <maven.compiler.target>10</maven.compiler.target>
-        <maven.assembly.plugin.version>3.1.0</maven.assembly.plugin.version>
+        <maven.assembly.plugin.version>3.1.1</maven.assembly.plugin.version>
 
-        <picocli.version>3.5.2</picocli.version>
-        <dagger.version>2.17</dagger.version>
-        <annotations.version>16.0.2</annotations.version>
+        <picocli.version>4.0.4</picocli.version>
+        <dagger.version>2.24</dagger.version>
+        <annotations.version>17.0.0</annotations.version>
         <minimal.json.version>0.9.5</minimal.json.version>
 
-        <junit.jupiter.version>5.2.0</junit.jupiter.version>
-        <junit.platform.surefire.provider.version>1.1.1</junit.platform.surefire.provider.version>
-        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
-        <wiremock.version>2.18.0</wiremock.version>
-        <mockito.core.version>2.21.0</mockito.core.version>
-        <slf4j.simple.version>1.7.25</slf4j.simple.version>
+        <junit.jupiter.version>5.5.2</junit.jupiter.version>
+        <junit.platform.surefire.provider.version>1.3.2</junit.platform.surefire.provider.version>
+        <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
+        <wiremock.version>2.25.1</wiremock.version>
+        <mockito.core.version>3.0.0</mockito.core.version>
+        <slf4j.simple.version>1.7.28</slf4j.simple.version>
 
     </properties>
 
@@ -146,13 +146,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-surefire-provider</artifactId>
-                        <version>${junit.platform.surefire.provider.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
 
         </plugins>

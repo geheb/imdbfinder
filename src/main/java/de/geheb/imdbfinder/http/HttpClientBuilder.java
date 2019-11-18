@@ -23,8 +23,8 @@ class HttpClientBuilder {
     httpConnection.setRequestMethod("GET");
     httpConnection.setRequestProperty("User-Agent", "Mozilla/5.0");
     httpConnection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-    httpConnection.setRequestProperty("Accept",
-            "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+    httpConnection.setRequestProperty("Accept", "application/json");
+    httpConnection.setInstanceFollowRedirects(true);
     httpConnection.connect();
 
     return httpConnection;

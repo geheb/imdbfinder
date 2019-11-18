@@ -1,11 +1,11 @@
 package de.geheb.imdbfinder.http;
 
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.WireMockServer;
 
 import java.io.IOException;
 import java.net.URL;
 
-import org.junit.Rule;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,19 +17,22 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 class HttpClientBuilderTest {
 
   private final HttpClientBuilder httpClientBuilder = new HttpClientBuilder();
-
-  @Rule
-  private final WireMockRule wireMockRule = new WireMockRule(wireMockConfig().dynamicPort());
+  private final WireMockServer mockServer = new WireMockServer(wireMockConfig().dynamicPort());
 
   @BeforeEach
-  void setup() {
-    wireMockRule.start();
+  void startServer() {
+    mockServer.start();
+  }
+
+  @AfterEach
+  void stopServer() {
+    mockServer.stop();
   }
 
   @Test
   void canRequestGet() throws IOException {
 
-    final int port = wireMockRule.port();
+    final int port = mockServer.port();
     configureFor("localhost", port);
     stubFor(get(urlPathMatching("/foo"))
             .willReturn(aResponse()

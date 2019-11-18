@@ -17,7 +17,7 @@ import picocli.CommandLine.Option;
 @SuppressWarnings("SpellCheckingInspection")
 @Command(
         name = "imdbfinder",
-        footer = "Copyright (c) 2018",
+        footer = "Copyright (c) 2019",
         description = "%nfind any movie on IMDb and extract meta information%n",
         versionProvider = ManifestVersionProvider.class
 )

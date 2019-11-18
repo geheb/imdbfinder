@@ -17,17 +17,21 @@ class UrlFinderTest {
   @Test
   void canFind() throws IOException {
 
-    final var content = "https://www.imdb.com/title/tt0120903";
+    final var imdbUrl = "https://www.imdb.com/title/tt0120903";
+    final var content = String.format("{\"data\":{ \"result\": { \"items\": [{\"url\":\"%s\"}]}}}",
+      imdbUrl);
 
     final var url = mockUrlFinder(content).find("x-men");
 
-    assertEquals(content, Objects.requireNonNull(url).toString());
+    assertEquals(imdbUrl, Objects.requireNonNull(url).toString());
   }
 
   @Test
   void canNotFind() throws IOException {
 
-    final var url = mockUrlFinder("foo").find("bar");
+    final var content = "{\"data\":{ \"result\": { \"items\": []}}}";
+
+    final var url = mockUrlFinder(content).find("bar");
 
     assertNull(url);
   }

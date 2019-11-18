@@ -1,10 +1,8 @@
-module de.geheb.imdbfinder {
-  requires javax.inject;
+open module de.geheb.imdbfinder {
   requires dagger;
   requires info.picocli;
-  requires annotations;
+  requires java.compiler;
+  requires javax.inject;
   requires minimal.json;
-
-  exports de.geheb.imdbfinder.app to info.picocli;
-  opens de.geheb.imdbfinder.app to info.picocli;
+  requires org.jetbrains.annotations;
 }
