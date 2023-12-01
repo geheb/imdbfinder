@@ -1,5 +1,6 @@
 # imdbfinder
-Find any movie on IMDb and show basic meta information 
+Find any movie on IMDb and show basic meta information. 
+This tool uses duckduckgo to find the movie URL to IMdB. The idea is not to use an API with any terms of use.
 
 ## Prerequisites
 * https://adoptium.net/de/temurin/releases/
