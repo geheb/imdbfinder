@@ -3,7 +3,7 @@ package de.geheb.imdbfinder.http;
 import com.github.tomakehurst.wiremock.WireMockServer;
 
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +34,7 @@ class HttpRequestExecutorTest {
 
     final int port = configureStub(200);
 
-    var result = httpRequestExecutor.getAsString(new URL("http://localhost:" + port + "/foo"));
+    var result = httpRequestExecutor.get(URI.create("http://localhost:" + port + "/foo"));
 
     assertEquals("bar", result);
   }
@@ -44,9 +44,9 @@ class HttpRequestExecutorTest {
 
     final int port = configureStub(200);
 
-    var url = new URL("http://localhost:" + port + "/baz");
+    var url = URI.create("http://localhost:" + port + "/baz");
 
-    assertThrows(IOException.class, () -> httpRequestExecutor.getAsString(url));
+    assertThrows(IOException.class, () -> httpRequestExecutor.post(url));
   }
 
   @Test
@@ -54,9 +54,9 @@ class HttpRequestExecutorTest {
 
     final int port = configureStub(301);
 
-    var url = new URL("http://localhost:" + port + "/foo");
+    var url = URI.create("http://localhost:" + port + "/foo");
 
-    assertThrows(IOException.class, () -> httpRequestExecutor.getAsString(url));
+    assertThrows(IOException.class, () -> httpRequestExecutor.post(url));
   }
 
   private int configureStub(int statusCode) {

@@ -3,7 +3,7 @@ package de.geheb.imdbfinder.imdb;
 import de.geheb.imdbfinder.http.HttpRequestExecutor;
 
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -18,12 +18,11 @@ class ContentParserTest {
   @Test
   void canDownloadAndParse() throws IOException {
     final var contentParser = mockContentParser();
-    final var contentResult = contentParser.downloadAndParse(new URL("http://localhost/foo"));
-
+    final var contentResult = contentParser.downloadAndParse(URI.create("http://localhost/foo"));
     var expectedContentResult = new ContentResult();
-    expectedContentResult.setMovieUrl(new URL("http://localhost/foo"));
+    expectedContentResult.setMovieUrl(URI.create("http://localhost/foo"));
     expectedContentResult.setTitle("bar");
-    expectedContentResult.setImageUrl(new URL("http://localhost/baz.jpg"));
+    expectedContentResult.setImageUrl(URI.create("http://localhost/baz.jpg"));
     expectedContentResult.setGenre(Arrays.asList("foo", "bar", "baz"));
     expectedContentResult.setContentRating("PG-13");
     expectedContentResult.setDescription("test");
@@ -38,7 +37,7 @@ class ContentParserTest {
   private ContentParser mockContentParser() throws IOException {
 
     var mockHttpRequestExecutor = mock(HttpRequestExecutor.class);
-    when(mockHttpRequestExecutor.getAsString(any())).thenReturn(
+    when(mockHttpRequestExecutor.get(any())).thenReturn(
             "<html>\n" +
             "<script type=\"application/ld+json\">{\n" +
             "  \"url\": \"foo\",\n" +
@@ -54,7 +53,7 @@ class ContentParserTest {
             "  \"datePublished\": \"2000-01-01\",\n" +
             "  \"keywords\": \"föö, bär, bäz\",\n" +
             "  \"aggregateRating\": {\n" +
-            "    \"ratingValue\": \"5.0\"\n" +
+            "    \"ratingValue\": 5.0\n" +
             "  },\n" +
             "  \"duration\": \"PT0H00M\"\n" +
             "}</script>\n" +

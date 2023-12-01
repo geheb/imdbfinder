@@ -3,7 +3,7 @@ package de.geheb.imdbfinder.imdb;
 import de.geheb.imdbfinder.util.ListComparator;
 
 import java.io.Serializable;
-import java.net.URL;
+import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,9 +13,9 @@ public class ContentResult implements Serializable {
   private static final char COMMA = ',';
   private static final String SEMICOLON = ";";
 
-  private URL movieUrl;
+  private URI movieUrl;
   private String title;
-  private URL imageUrl;
+  private URI imageUrl;
   private List<String> genre;
   private String contentRating;
   private String description;
@@ -24,11 +24,11 @@ public class ContentResult implements Serializable {
   private List<String> keywords;
   private String duration;
 
-  URL getMovieUrl() {
+  URI getMovieUrl() {
     return movieUrl;
   }
 
-  void setMovieUrl(URL movieUrl) {
+  void setMovieUrl(URI movieUrl) {
     this.movieUrl = movieUrl;
   }
 
@@ -40,11 +40,11 @@ public class ContentResult implements Serializable {
     this.title = title;
   }
 
-  URL getImageUrl() {
+  URI getImageUrl() {
     return imageUrl;
   }
 
-  void setImageUrl(URL imageUrl) {
+  void setImageUrl(URI imageUrl) {
     this.imageUrl = imageUrl;
   }
 
@@ -126,14 +126,14 @@ public class ContentResult implements Serializable {
   @Override
   public String toString() {
     return "movieUrl=" + movieUrl +
-            COMMA + "title=" + title +
-            COMMA + "imageUrl=" + imageUrl +
-            COMMA + "genre=" + (null == genre ? null : String.join(SEMICOLON, genre)) +
-            COMMA + "contentRating=" + contentRating +
-            COMMA + "description=" + description +
-            COMMA + "datePublished=" + datePublished +
-            COMMA + "userRating=" + userRating +
-            COMMA + "keywords=" + (null == keywords ? null : String.join(SEMICOLON, keywords)) +
-            COMMA + "duration=" + duration;
+      COMMA + "title=" + title +
+      COMMA + "imageUrl=" + imageUrl +
+      COMMA + "genre=" + (null == genre ? null : String.join(SEMICOLON, genre)) +
+      COMMA + "contentRating=" + contentRating +
+      COMMA + "description=" + description +
+      COMMA + "datePublished=" + datePublished +
+      COMMA + "userRating=" + userRating +
+      COMMA + "keywords=" + (null == keywords ? null : String.join(SEMICOLON, keywords)) +
+      COMMA + "duration=" + duration;
   }
 }

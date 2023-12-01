@@ -6,7 +6,7 @@ public class SerializerFactory {
 
   public Serializer create(@NotNull ContentType contentType) {
     //noinspection ConstantConditions
-    if (null == contentType) throw new IllegalArgumentException("null");
+    if (null == contentType) throw new IllegalArgumentException("missing contentType");
     switch (contentType) {
       case KeyValue:
         return new KeyValueSerializer();

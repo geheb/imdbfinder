@@ -3,7 +3,9 @@ package de.geheb.imdbfinder.http;
 import com.github.tomakehurst.wiremock.WireMockServer;
 
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse.BodyHandlers;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +32,7 @@ class HttpClientBuilderTest {
   }
 
   @Test
-  void canRequestGet() throws IOException {
+  void canRequestPost() throws IOException, InterruptedException {
 
     final int port = mockServer.port();
     configureFor("localhost", port);
@@ -39,12 +41,15 @@ class HttpClientBuilderTest {
                     .withStatus(200)
                     .withBody("")));
 
-    final var connection = httpClientBuilder.requestGet(new URL("http://localhost:" + port + "/foo"));
+    try (final var client = httpClientBuilder.createDefault()) {
 
-    try {
-      assertEquals(200, connection.getResponseCode());
-    } finally {
-      connection.disconnect();
+      final var request = HttpRequest.newBuilder()
+        .uri(URI.create("http://localhost:" + port + "/foo"))
+        .GET()
+        .build();
+
+        var response = client.send(request, BodyHandlers.ofString());
+        assertEquals(200, response.statusCode());
     }
   }
 }

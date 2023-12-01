@@ -1,7 +1,7 @@
 package de.geheb.imdbfinder.imdb;
 
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -17,14 +17,14 @@ class JsonSerializerTest {
   void canSerialize() throws MalformedURLException {
 
     final var result = new ContentResult();
-    result.setMovieUrl(new URL("http://localhost"));
+    result.setMovieUrl(URI.create("http://localhost"));
     result.setTitle("test");
     result.setDatePublished("2000-01-01");
     result.setUserRating(0.0);
     result.setGenre(Arrays.asList("foo", "bar"));
     result.setContentRating("G");
     result.setKeywords(Collections.singletonList("baz"));
-    result.setImageUrl(new URL("https://localhost"));
+    result.setImageUrl(URI.create("https://localhost"));
     result.setDuration("PT0H00M");
     result.setDescription("junit");
 

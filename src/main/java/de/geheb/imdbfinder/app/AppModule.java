@@ -6,7 +6,7 @@ import de.geheb.imdbfinder.imdb.FinderException;
 import de.geheb.imdbfinder.imdb.UrlFinder;
 
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
 import javax.inject.Inject;
 
 import org.jetbrains.annotations.NotNull;
@@ -27,19 +27,19 @@ class AppModule {
   @NotNull
   ContentResult find(@NotNull final String title) throws FinderException {
 
-    URL url;
+    URI uri;
     try {
-      url = urlFinder.find(title);
+      uri = urlFinder.find(title);
     } catch (IOException e) {
       throw new FinderException("Find movie failed", e);
     }
 
-    if (null == url) {
+    if (null == uri) {
       throw new FinderException("No movie found");
     }
 
     try {
-      return contentParser.downloadAndParse(url);
+      return contentParser.downloadAndParse(uri);
     } catch (IOException e) {
       throw new FinderException("IMDb information can't be extracted", e);
     }

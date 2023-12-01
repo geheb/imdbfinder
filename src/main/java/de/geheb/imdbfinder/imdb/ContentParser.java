@@ -5,7 +5,7 @@ import com.eclipsesource.json.JsonValue;
 import de.geheb.imdbfinder.http.HttpRequestExecutor;
 
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -27,12 +27,12 @@ public class ContentParser {
   }
 
   @NotNull
-  public ContentResult downloadAndParse(@NotNull final URL url) throws IOException {
+  public ContentResult downloadAndParse(@NotNull final URI uri) throws IOException {
 
-    var content = httpRequestExecutor.getAsString(url);
+    var content = httpRequestExecutor.get(uri);
 
     var result = parseHtml(content);
-    result.setMovieUrl(url);
+    result.setMovieUrl(uri);
 
     return result;
   }
@@ -80,16 +80,17 @@ public class ContentParser {
     result.setDatePublished(null != datePublished ? datePublished.asString() : null);
 
     final var aggregateRating = jsonObj.get("aggregateRating");
-    final String ratingValue = null != aggregateRating
-            ? aggregateRating.asObject().get("ratingValue").asString()
+
+    final Double ratingValue = null != aggregateRating
+            ? aggregateRating.asObject().get("ratingValue").asDouble()
             : null;
-    result.setUserRating(null != ratingValue ? Double.parseDouble(ratingValue) : null);
+    result.setUserRating(null != ratingValue ? ratingValue : null);
 
     final var keywords = jsonObj.get("keywords");
     result.setKeywords(null != keywords ? Arrays.asList(keywords.asString().split("\\s*,\\s*")) : null);
 
     final var image = jsonObj.get("image");
-    result.setImageUrl(null != image ? new URL(image.asString()) : null);
+    result.setImageUrl(null != image ? URI.create(image.asString()) : null);
 
     final var duration = jsonObj.get("duration");
     result.setDuration(null != duration ? duration.asString() : null);

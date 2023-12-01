@@ -4,7 +4,7 @@ import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.WriterConfig;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +33,7 @@ class JsonSerializer implements Serializer {
     jsonObject.add(key, null != value ? Json.value(value) : Json.NULL);
   }
 
-  private void add(final JsonObject jsonObject, final String key, final URL value) {
+  private void add(final JsonObject jsonObject, final String key, final URI value) {
     jsonObject.add(key, null != value ? Json.value(value.toString()) : Json.NULL);
   }
 

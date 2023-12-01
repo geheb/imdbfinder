@@ -1,12 +1,8 @@
-# imdbfinder [![Build status](https://ci.appveyor.com/api/projects/status/cux8wvg4r2okag5p?svg=true)](https://ci.appveyor.com/project/gethomast/imdbfinder)
-find any movie on IMDb and extract meta information 
+# imdbfinder
+Find any movie on IMDb and show basic meta information 
 
 ## Prerequisites
-* Java 10 compatible OS
-* [Java 10 Runtime](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
-
-## Download
-Latest [Package](https://github.com/geheb/imdbfinder/releases/latest)
+* https://adoptium.net/de/temurin/releases/
 
 ## Usage
 ```
@@ -24,7 +20,7 @@ imdbfinder [-hv] [-c=<contentType>] [-o=<outputFile>] -t=<movieTitle>
 
 Find "X-Men"
 	
-	java -jar imdbfinder-1.0-jar-with-dependencies.jar -t x-men
+	java -jar ./imdbfinder-1.2.0-jar-with-dependencies.jar -t x-men
 
 The output will be key/value like
 
@@ -39,5 +35,3 @@ The output will be key/value like
 	duration=PT1H44M
 	description=Two mutants come to a private academy for their kind whose resident superhero team must oppose a terrorist organization with similar powers.
 
-## License
-[MIT](https://github.com/geheb/imdbfinder/blob/master/LICENSE)

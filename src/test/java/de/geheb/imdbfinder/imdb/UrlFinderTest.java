@@ -39,7 +39,7 @@ class UrlFinderTest {
   private UrlFinder mockUrlFinder(final String content) throws IOException {
 
     var mockHttpRequestExecutor = mock(HttpRequestExecutor.class);
-    when(mockHttpRequestExecutor.getAsString(any())).thenReturn(content);
+    when(mockHttpRequestExecutor.post(any())).thenReturn(content);
     return new UrlFinder(mockHttpRequestExecutor);
   }
 }

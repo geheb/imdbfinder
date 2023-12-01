@@ -1,8 +1,11 @@
 package de.geheb.imdbfinder.http;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.ProxySelector;
+import java.net.http.HttpClient;
+import java.net.http.HttpClient.Redirect;
+import java.net.http.HttpClient.Version;
+import java.time.Duration;
+
 import javax.inject.Inject;
 
 import org.jetbrains.annotations.NotNull;
@@ -15,18 +18,15 @@ class HttpClientBuilder {
   }
 
   @NotNull
-  HttpURLConnection requestGet(@NotNull final URL url) throws IOException {
+  HttpClient createDefault() {
 
-    final var httpConnection = (HttpURLConnection) url.openConnection();
-    httpConnection.setConnectTimeout(5 * 1000);
-    httpConnection.setReadTimeout(5 * 1000);
-    httpConnection.setRequestMethod("GET");
-    httpConnection.setRequestProperty("User-Agent", "Mozilla/5.0");
-    httpConnection.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-    httpConnection.setRequestProperty("Accept", "application/json");
-    httpConnection.setInstanceFollowRedirects(true);
-    httpConnection.connect();
+    var client = HttpClient.newBuilder()
+      .version(Version.HTTP_1_1)
+      .followRedirects(Redirect.NORMAL)
+      .connectTimeout(Duration.ofSeconds(60))
+      .proxy(ProxySelector.getDefault())
+      .build();
 
-    return httpConnection;
+    return client;
   }
 }
